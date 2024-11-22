@@ -1,0 +1,99 @@
+################################################################################
+# Docker Compose file for starting up the service for testing in GitHub workflow
+# This template provides comparable infrastructure to the real environment.
+#   - mongodb
+#   - redis
+#   - localstack (s3, sqs, sns)
+#
+# Both mongo and localstack have init scripts included for setting up resources
+# on startup. These scripts are in docker/scripts.
+#
+# It also includes a selenium-chrome container for running the browser headless.
+#
+# The services being tested can either be started up here using the latest
+# builds from dockerhub.
+# In the example each service has a .env config file in docker/config/
+# Services can reference each other by their container names.
+# e.g. http://cdp-example-node-backend:3001/
+#
+################################################################################
+services:
+  mongodb:
+    image: mongo:6.0.13
+    volumes:
+      - ./docker/scripts/mongodb:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.hello().ok"]
+      interval: 5s
+      start_period: 5s
+      retries: 3
+################################################################################
+  localstack:
+    image: localstack/localstack:3.2.0
+    environment:
+      - LOCALSTACK_HOST=127.0.0.1
+      - SERVICES=s3,sqs,sns,dynamodb
+      - LS_LOG=WARN
+    env_file:
+      - ./docker/config/defaults.env
+    volumes:
+      - ./docker/scripts/localstack:/etc/localstack/init/ready.d
+    healthcheck:
+      test: ["CMD", "curl", "localhost:4566"]
+      interval: 5s
+      start_period: 5s
+      retries: 3
+
+################################################################################
+  redis:
+    image: redis:7.2.3-alpine3.18
+    restart: always
+    healthcheck:
+      test: [ "CMD", "redis-cli", "PING" ]
+      interval: 5s
+      start_period: 2s
+      retries: 5
+
+################################################################################
+  selenium-chrome:
+    image: selenium/standalone-chrome:119.0
+    ports:
+      - 4444:4444
+
+################################################################################
+  cdp-example-node-frontend:
+    image: defradigital/cdp-example-node-frontend:latest
+    env_file:
+      - ./docker/config/defaults.env
+      - ./docker/config/cdp-example-node-frontend.env
+    environment:
+      - PORT=3000
+    depends_on:
+      cdp-example-node-backend:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    ports:
+      - 3000:3000
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:3000/health"]
+      interval: 3s
+      start_period: 2s
+      retries: 3
+
+  ################################################################################
+  cdp-example-node-backend:
+    image: defradigital/cdp-example-node-backend:latest
+    env_file:
+      - ./docker/config/defaults.env
+      - ./docker/config/cdp-example-node-backend.env
+    environment:
+      - PORT=3001
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:3001/health"]
+      interval: 3s
+      start_period: 2s
+      retries: 3
