@@ -22,8 +22,6 @@ jobs:
         run: docker compose up --wait-timeout 300 -d --quiet-pull
       - name: Run the tests
         run: npm run test:github
-      - name: Generate test report
-        run: npm run report
       - name: debug
         if: failure()
         run: |
