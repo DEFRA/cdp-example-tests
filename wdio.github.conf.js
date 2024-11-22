@@ -79,7 +79,7 @@ export const config = {
     [
       'junit',
       {
-        outputDir: './results',
+        outputDir: './test-results',
         outputFileFormat: function (options) {
           return 'results.xml'
         }
