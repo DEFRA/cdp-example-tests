@@ -77,10 +77,9 @@ export const config = {
       }
     ],
     [
-      // Allure is used to generate the final HTML report
-      'allure',
+      'junit',
       {
-        outputDir: 'allure-results'
+        outputDir: './results'
       }
     ]
   ],
