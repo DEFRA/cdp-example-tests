@@ -27,8 +27,8 @@ jobs:
         run: |
           docker compose logs > logs.txt
           docker ps
-      - uses: actions/upload-artifact@v4
-        if: always()
+      - name: Create test summary
+        uses: test-summary/action@v1
         with:
-          name: results
-          path: results/
+          paths: results/**/*.xml
+        if: always()
