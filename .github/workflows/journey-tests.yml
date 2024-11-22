@@ -28,7 +28,7 @@ jobs:
           key: ${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ env.cache-name }}-
-  
+
       - name: Setup the tests
         run: npm ci --omit=dev
       - name: Start docker compose
@@ -45,3 +45,8 @@ jobs:
         with:
           paths: results/**/*.xml
         if: always()
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: Test Results
+          path: allure-report/index.html

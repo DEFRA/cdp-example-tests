@@ -84,6 +84,12 @@ export const config = {
           return 'results.xml'
         }
       }
+    ],
+    [
+      'allure',
+      {
+        outputDir: 'allure-results'
+      }
     ]
   ],
 
