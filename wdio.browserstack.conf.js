@@ -1,6 +1,7 @@
+// const { ProxyAgent, setGlobalDispatcher } = require('undici')
+import { ProxyAgent, setGlobalDispatcher } from 'undici'
 const debug = process.env.DEBUG
 const oneHour = 60 * 60 * 1000
-const { ProxyAgent, setGlobalDispatcher } = require('undici')
 
 if (process.env.HTTP_PROXY) {
   const dispatcher = new ProxyAgent({
@@ -61,7 +62,7 @@ export const config = {
         testObservability: true, // Disable if you do not want to use the browserstack test observer functionality
         testObservabilityOptions: {
           user: process.env.BROWSERSTACK_USER,
-          key: process.env.BROWSERSTACK_KEY,
+          key: process.env.BROWSERSTACK_ACCESS_KEY,
           projectName: 'cdp-example-tests',
           buildName: 'example-test-run'
         },
@@ -69,7 +70,8 @@ export const config = {
         forceLocal: true,
         browserstackLocal: true,
         opts: {
-          proxyHost: 'localhost'
+          proxyHost: 'localhost',
+          proxyPort: 3128
         }
       }
     ]
