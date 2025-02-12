@@ -41,7 +41,7 @@ export const config = {
 
   commonCapabilities: {
     'bstack:options': {
-      buildName: 'browserstack-build-1' // configure as required
+      buildName: 'cdp-example-tests-infra-dev' // configure as required
     }
   },
   capabilities: [
@@ -50,7 +50,7 @@ export const config = {
       'bstack:options': {
         browserVersion: 'latest',
         os: 'Windows',
-        osVersion: '11'
+        osVersion: '10'
       }
     }
   ],
@@ -63,8 +63,8 @@ export const config = {
         testObservabilityOptions: {
           user: process.env.BROWSERSTACK_USER,
           key: process.env.BROWSERSTACK_ACCESS_KEY,
-          projectName: 'cdp-example-tests',
-          buildName: 'example-test-run'
+          projectName: 'cdp-portal-tests',
+          buildName: 'cdp-example-test'
         },
         acceptInsecureCerts: true,
         forceLocal: true,
