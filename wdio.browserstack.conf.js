@@ -1,14 +1,15 @@
 // const { ProxyAgent, setGlobalDispatcher } = require('undici')
 import { ProxyAgent, setGlobalDispatcher } from 'undici'
+import { bootstrap } from 'global-agent'
 const debug = process.env.DEBUG
 const oneHour = 60 * 60 * 1000
 
-if (process.env.HTTP_PROXY) {
-  const dispatcher = new ProxyAgent({
-    uri: new URL(process.env.HTTP_PROXY).toString()
-  })
-  setGlobalDispatcher(dispatcher)
-}
+const dispatcher = new ProxyAgent({
+  uri: 'http://localhost:3128'
+})
+setGlobalDispatcher(dispatcher)
+bootstrap()
+global.GLOBAL_AGENT.HTTP_PROXY = 'http://localhost:3128'
 
 export const config = {
   //
@@ -67,11 +68,12 @@ export const config = {
           buildName: 'cdp-example-test'
         },
         acceptInsecureCerts: true,
-        forceLocal: true,
+        forceLocal: false,
         browserstackLocal: true,
         opts: {
           proxyHost: 'localhost',
-          proxyPort: 3128
+          proxyPort: 3128,
+          verbose: 'true'
         }
       }
     ]
@@ -82,10 +84,10 @@ export const config = {
 
   // Number of failures before the test suite bails.
   bail: 0,
-  waitforTimeout: 10000,
-  waitforInterval: 200,
-  connectionRetryTimeout: 120000,
-  connectionRetryCount: 3,
+  waitforTimeout: 1000,
+  waitforInterval: 300,
+  connectionRetryTimeout: 12000,
+  connectionRetryCount: 1,
 
   framework: 'mocha',
 

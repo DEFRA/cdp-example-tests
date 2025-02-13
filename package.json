@@ -39,6 +39,7 @@
     "@wdio/spec-reporter": "8.32.4",
     "allure-commandline": "2.27.0",
     "babel-plugin-module-resolver": "5.0.0",
+    "global-agent": "3.0.0",
     "undici": "7.3.0"
   },
   "devDependencies": {
