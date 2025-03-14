@@ -1,6 +1,7 @@
 name: Run Journey Tests
 
 permissions:
+  id-token: write
   checks: write
   pull-requests: write
 
