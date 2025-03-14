@@ -16,6 +16,12 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v4
+
+      - name: Docker Login
+        uses: DEFRA/cdp-build-action/docker-login@main
+        with:
+          iam-role-name: github-${{ github.event.repository.name }}-build-role
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
