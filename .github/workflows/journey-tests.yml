@@ -63,4 +63,3 @@ jobs:
             test-results/**/*.xml
             test-results/**/*.trx
             test-results/**/*.json
-
