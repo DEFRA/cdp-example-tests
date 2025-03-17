@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Docker Login
-        uses: DEFRA/cdp-build-action/docker-login@516429
+        uses: DEFRA/cdp-build-action/docker-login@main
 
       - uses: actions/setup-node@v4
         with:
