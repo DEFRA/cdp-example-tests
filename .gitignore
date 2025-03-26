@@ -11,3 +11,6 @@ coverage
 /allure-report
 /allure-results
 /results
+browserstack.err
+/logs
+local.log

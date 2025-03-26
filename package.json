@@ -2,8 +2,9 @@
   "name": "cdp-example-tests",
   "version": "0.0.0",
   "description": "",
+  "type": "module",
   "engines": {
-    "node": ">=20.11.1"
+    "node": ">=22.13.1"
   },
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",
