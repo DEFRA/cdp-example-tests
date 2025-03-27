@@ -77,7 +77,7 @@ export const config = {
     ]
   ],
 
-  execArgv: debug ? ['--inspect'] : [],
+  execArgv: [],
 
   logLevel: debug ? 'debug' : 'info',
 
