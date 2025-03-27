@@ -1,7 +1,7 @@
 import { ProxyAgent, setGlobalDispatcher } from 'undici'
 import { bootstrap } from 'global-agent'
 
-const debug = process.env.DEBUG
+const debug = true
 const oneHour = 60 * 60 * 1000
 
 const dispatcher = new ProxyAgent({
