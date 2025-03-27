@@ -17,8 +17,7 @@ export const config = {
   // Runner Configuration
   // ====================
   // WebdriverIO supports running e2e tests as well as unit and component tests.
-  runner: 'local',
-  //
+  runner: 'local', //
   // Set a base URL in order to shorten url command calls. If your `url` parameter starts
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
@@ -29,8 +28,7 @@ export const config = {
   key: process.env.BROWSERSTACK_ACCESS_KEY,
 
   // Tests to run
-  specs: ['./test/specs/**/*.js'],
-  // Tests to exclude
+  specs: ['./test/specs/**/*.js'], // Tests to exclude
   exclude: [],
   maxInstances: 1,
 
@@ -78,7 +76,10 @@ export const config = {
       }
     ]
   ],
-  execArgv: debug ? ['--inspect'] : [],
+
+  execArgv: debug
+    ? ['--loader', 'esm-module-alias/loader', '--inspect']
+    : ['--loader', 'esm-module-alias/loader'],
 
   logLevel: debug ? 'debug' : 'info',
 
@@ -115,8 +116,7 @@ export const config = {
   mochaOpts: {
     ui: 'bdd',
     timeout: debug ? oneHour : 60000
-  },
-  //
+  }, //
   // =====
   // Hooks
   // =====
