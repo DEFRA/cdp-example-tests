@@ -16,7 +16,6 @@ fi
 
 echo "checking browserstack local"
 ls -lah ~/.browserstack || true
-cat ~/.browserstack/BrowserStackLocal || true
 echo "local.log"
 cat local.log || true
 exit $test_exit_code
