@@ -73,7 +73,9 @@ export const config = {
         }
       ],
 
-  execArgv: debug ? ['--inspect'] : [],
+  execArgv: debug
+    ? ['--loader', 'esm-module-alias/loader', '--inspect']
+    : ['--loader', 'esm-module-alias/loader'],
 
   //
   // ===================
