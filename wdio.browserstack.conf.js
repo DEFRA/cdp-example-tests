@@ -78,8 +78,13 @@ export const config = {
   ],
 
   execArgv: debug
-    ? ['--loader', 'esm-module-alias/loader', '--inspect']
-    : ['--loader', 'esm-module-alias/loader'],
+    ? [
+        '--loader',
+        'esm-module-alias/loader',
+        '--inspect',
+        '--experimental-modules'
+      ]
+    : ['--loader', 'esm-module-alias/loader', '--experimental-modules'],
 
   logLevel: debug ? 'debug' : 'info',
 
