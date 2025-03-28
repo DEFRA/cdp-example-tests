@@ -1,13 +1,8 @@
 #!/bin/sh
 
-curl -x HTTP_PROXY -v https://www.browserstack.com/ || true
-
 echo "run_id: $RUN_ID"
 npm run test:browserstack
 test_exit_code=$?
-
-echo "checking browserstack local"
-ls -la ~/.browserstack || true
 
 npm run report:publish
 publish_exit_code=$?
@@ -17,8 +12,4 @@ if [ $publish_exit_code -ne 0 ]; then
   exit $publish_exit_code
 fi
 
-echo "checking browserstack local"
-ls -lah ~/.browserstack || true
-echo "local.log"
-cat local.log || true
 exit $test_exit_code
