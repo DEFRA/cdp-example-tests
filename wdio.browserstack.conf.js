@@ -46,11 +46,35 @@ export const config = {
   },
   capabilities: [
     {
-      browserName: 'Chrome', // Set as required
+      browserName: 'Chrome',
       'bstack:options': {
         browserVersion: 'latest',
         os: 'Windows',
-        osVersion: '10'
+        osVersion: '11'
+      }
+    },
+    {
+      browserName: 'Firefox',
+      'bstack:options': {
+        browserVersion: 'latest',
+        os: 'Windows',
+        osVersion: '11'
+      }
+    },
+    {
+      browserName: 'Edge',
+      'bstack:options': {
+        browserVersion: 'latest',
+        os: 'Windows',
+        osVersion: '11'
+      }
+    },
+    {
+      browserName: 'Safari',
+      'bstack:options': {
+        browserVersion: 'latest',
+        os: 'OS X',
+        osVersion: 'Sequoia'
       }
     }
   ],
