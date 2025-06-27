@@ -54,16 +54,6 @@ export const config = {
       }
     },
     {
-      browserName: 'Firefox',
-      'bstack:options': {
-        idleTimeout: 300,
-        resolution: '1920x1080',
-        browserVersion: 'latest',
-        os: 'Windows',
-        osVersion: '11'
-      }
-    },
-    {
       browserName: 'Edge',
       'bstack:options': {
         browserVersion: 'latest',
