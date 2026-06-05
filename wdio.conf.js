@@ -16,8 +16,8 @@ export const config = {
   baseUrl: `https://cdp-example-node-frontend.${process.env.ENVIRONMENT}.cdp-int.defra.cloud`,
 
   // Connection to remote chromedriver
-  hostname: process.env.CHROMEDRIVER_URL || '127.0.0.1',
-  port: process.env.CHROMEDRIVER_PORT || 4444,
+  //hostname: process.env.CHROMEDRIVER_URL || '127.0.0.1',
+  //port: process.env.CHROMEDRIVER_PORT || 4444,
 
   // Tests to run
   specs: ['./test/specs/**/*.js'],
@@ -59,10 +59,10 @@ export const config = {
 
   // Number of failures before the test suite bails.
   bail: 0,
-  waitforTimeout: 10000,
+  waitforTimeout: 5000,
   waitforInterval: 200,
-  connectionRetryTimeout: 120000,
-  connectionRetryCount: 3,
+  connectionRetryTimeout: 12000,
+  connectionRetryCount: 1,
 
   framework: 'mocha',
 
