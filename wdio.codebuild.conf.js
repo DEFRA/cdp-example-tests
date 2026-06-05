@@ -146,6 +146,13 @@ export const config = {
   reporters: [
     'spec',
     [
+      'junit',
+      {
+        outputDir: '.',
+        outputFileFormat: () => `test-results.xml`
+      }
+    ],
+    [
       'allure',
       {
         outputDir: 'allure-results'
