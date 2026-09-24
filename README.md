@@ -31,7 +31,7 @@ Start application you are testing on the url specified in `baseUrl` [wdio.local.
 npm run test:local
 ```
 
-### Debugging local tests
+### Debugging local tests.
 
 ```bash
 npm run test:local:debug
